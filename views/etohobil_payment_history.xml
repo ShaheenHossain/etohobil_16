@@ -1,0 +1,22 @@
+<odoo>
+<record id="view_partner_form_inherit" model="ir.ui.view">
+    <field name="name">res.partner.form.payment.history</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Payment History">
+                <field name="payment_history_ids" readonly="1">
+                    <tree>
+                        <field name="invoice_id"/>
+                        <field name="invoice_date"/>
+                        <field name="amount_paid" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}" sum="Total"/>
+                    </tree>
+                </field>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+
+</odoo>

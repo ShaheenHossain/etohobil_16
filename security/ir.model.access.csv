@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_member_payment,access.member.payment,model_member_payment,,1,1,1,1
+access_member_deposit_structure,access.member.deposit.structure,model_member_deposit_structure,,1,1,1,1
+access_member_payment_history,access.member.payment.history,model_member_payment_history,,1,1,1,1

@@ -1,0 +1,16 @@
+<odoo>
+    <template id="report_payment_slip">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Payment Receipt</h2>
+                <p><strong>Member:</strong> <span t-esc="doc.member_id.name"/></p>
+                <p><strong>Date:</strong> <span t-esc="doc.date"/></p>
+                <p><strong>Month:</strong> <span t-esc="doc.month_name"/> <strong>Year:</strong> <span t-esc="doc.year"/></p>
+                <p><strong>Deposit Amount:</strong> <span t-esc="doc.deposit_amount"/></p>
+                <p><strong>Subscription Amount:</strong> <span t-esc="doc.subscription_amount"/></p>
+                <p><strong>Total Amount:</strong> <span t-esc="doc.total_amount"/></p>
+                <p><strong>Due Amount:</strong> <span t-esc="doc.due_amount"/></p>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,223 @@
+<odoo>
+    <record model="ir.ui.view" id="etohobil_view_partner_tree">
+        <field name="name">res.partner.tree.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <field name="display_name" position="after">
+                <field name="member_id" class="text-center"/>
+            </field>
+
+            <field name="display_name" position="before">
+                <field name="sequence" widget="handle" optional="show"/>
+            </field>
+
+
+
+<!--
+            <xpath expr="//field[@name='display_name']" position="before">
+            &lt;!&ndash; <field name="image_1920" widget="image" optional="show" optional="show" style="width: 80px; height: 80px; object-fit: cover;"/>&ndash;&gt;
+                <field name="image_1920" widget="image" />
+            </xpath>
+-->
+
+        </field>
+    </record>
+
+<record id="view_res_partner_kanban_inherit_member" model="ir.ui.view">
+    <field name="name">res.partner.kanban.inherit.member</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//div[@class='oe_kanban_details d-flex flex-column justify-content-between']/div/ul" position="inside">
+            <li t-if="record.member_id.raw_value" class="o_text_overflow">
+                <span>Member ID: <strong><field name="member_id"/></strong></span>
+
+                <!-- <span><strong>Member ID: </strong></span>
+                <span><field name="member_id"/></span>-->
+            </li>
+        </xpath>
+    </field>
+</record>
+
+
+    <record id="view_res_partner_etohobil_member_filter" model="ir.ui.view">
+        <field name="name">res.partner.select</field>
+        <field name="model">res.partner</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <search string="All Members ">
+                <field name="name"
+                   filter_domain="['|', '|', ('name', 'ilike', self), ('parent_id', 'ilike', self), ('ref' , '=', self)]"/>
+                <field name="category_id"/>
+                <filter name="customer" string="Customers" domain="[('customer_rank' ,'>', 0)]"/>
+                <filter name="supplier" string="Vendors" domain="[('supplier_rank', '>', 0)]"/>
+                <group expand="0" string="Group By" colspan="10" col="8">
+                    <filter string="Salesperson" name="salesperson" domain="[]" context="{'group_by' : 'user_id'}"/>
+                </group>
+                <separator/>
+                    <filter name="all_members" string="Members" domain="[('active_member', '=', True)]"/>
+                <separator/>
+            </search>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="etohobil_members_action">
+            <field name="name">Members</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,form,tree</field>
+
+<!--            <field name="search_view_id" ref="view_res_partner_etohobil_member_filter"/>-->
+<!--            <field name="context">{"search_default_all_members": 1, "default_active_member": True}</field>-->
+
+            <field name="search_view_id" ref="view_res_partner_etohobil_member_filter"/>
+            <field name="context">{"search_default_all_members": 1, "default_active_member": True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                  Add a new member
+                </p><p>
+                  Odoo helps you easily track all activities related to a member:
+                  Current Membership Status, Discussions and History of Membership, etc.
+                </p>
+            </field>
+        </record>
+
+    <record id="etohobil_members_action_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="base.res_partner_kanban_view"/>
+        <field name="act_window_id" ref="etohobil_members_action"/>
+    </record>
+
+    <record id="etohobil_view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+
+<!--
+            <xpath expr="//div[@class='o_row']" position="after">
+&lt;!&ndash;            <xpath expr="//group" position="before">&ndash;&gt;
+                <div>
+                    <group>
+                        <group>
+                            <field name="member_id" string="Member ID"/>
+
+                                <field name="is_committee_member" default="False"/>
+                                <field name="committee_designation" placeholder="e.g. Director" invisible="not is_committee_member"/>
+                                <field name="committee_start_date" invisible="not is_committee_member"/>
+                                <field name="committee_end_date" invisible="not is_committee_member"/>
+                        </group>
+                    </group>
+                </div>
+            </xpath>
+-->
+
+            <xpath expr="//div[@class='o_row']" position="after">
+                <div>
+                    <group>
+                        <group>
+                            <field name="member_id" string="Member ID"/>
+                            <field name="is_committee_member"/>
+                            <field name="committee_designation" placeholder="e.g. Director"
+                                   attrs="{'invisible': [('is_committee_member', '=', False)]}"/>
+                            <field name="committee_start_date"
+                                   attrs="{'invisible': [('is_committee_member', '=', False)]}"/>
+                            <field name="committee_end_date"
+                                   attrs="{'invisible': [('is_committee_member', '=', False)]}"/>
+                        </group>
+                    </group>
+                </div>
+            </xpath>
+
+        <xpath expr="//field[@name='website']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='category_id']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='title']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='function']" position="attributes">
+            <attribute name="placeholder">e.g. Director </attribute>
+            <attribute name="string">Designation</attribute>
+        </xpath>
+
+
+<!--            to hide full group-->
+<!--            <xpath expr="//group[.//field[@name='website']]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath> -->
+
+
+                <notebook position="inside">
+                    <page string="Members Details" name="membership">
+                        <group>
+                            <group>
+<!--                                <field name="member_id" />-->
+                                <field name="active_member" />
+                                <field name="father_name"/>
+                                <field name="mother_name"/>
+                                <field name="marital_status"/>
+                                <field name="date_of_brith"/>
+                                <field name="nid" />
+                            </group>
+                            <group>
+                                <field name="present_address" />
+                                <field name="permanent_address"/>
+                                <field name="occupation"/>
+                                <field name="religion"/>
+                                <field name="marital_status"/>
+                                <field name="nominee_name"/>
+                <!--                <field name="nominee_photo"/>-->
+                                <field name="relation_with_nominee"/>
+                <!--                <field name="photo"/>-->
+                <!--                <field name="deposited_amount"/>-->
+                <!--                <field name="due_amount"/>-->
+                <!--                     <group string="Payment Records">
+                                        <field name="payment_record_ids" widget="one2many"/>
+                                    </group>-->
+                           </group>
+                        </group>
+                    </page>
+                </notebook>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window.view" id="etohobil_members_action_form_view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.view_partner_form"/>
+        <field name="act_window_id" ref="etohobil_members_action"/>
+    </record>
+
+
+
+        <!-- Action to open the views -->
+    <record id="member_deposit_structure_action" model="ir.actions.act_window">
+        <field name="name">Member Deposit Structure</field>
+        <field name="res_model">member.deposit.structure</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="eTohobil" id="etohobil_root" sequence="1" web_icon="etohobil_16,static/description/icon.png"/>
+    <menuitem name="Members" id="etohobil_main_menu" parent="etohobil_root" action="etohobil_members_action"/>
+<!--    <menuitem name="Payment Record" id="payment_record_menu" parent="etohobil_root" action="payment_record_action"/>-->
+    <menuitem name="Member Payments" id="member_payment_menu" parent="etohobil_root" action="account.action_move_out_invoice_type"/>
+
+    <menuitem name="Configuration" id="etohobil_conf_menu" parent="etohobil_root"/>
+<!--    <menuitem name="Payment Structure" id="payment_structure_menu" parent="etohobil_conf_menu" action="payment_stuctrure_action"/>-->
+<!--    <menuitem name="Payment Increment History" id="payment_increment_history" parent="etohobil_conf_menu" action="payment_increment_history_action"/>-->
+<!--    <menuitem name="Member Payment History" id="menu_member_payment_history" parent="etohobil_conf_menu" action="member_payment_history_action"/>-->
+    <menuitem id="member_deposit_structure" name="Member Deposit Structure" parent="etohobil_conf_menu" action="member_deposit_structure_action"/>
+<!--    <menuitem id="member_deposit_structure" name="Member Payment Structure" parent="etohobil_conf_menu" action="member_payment_structure_action"/>-->
+
+</odoo>

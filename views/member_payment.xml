@@ -1,0 +1,127 @@
+<odoo>
+
+<!--
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/etohobil/static/src/js/member_payment_base_amount.js"></script>
+        </xpath>
+    </template>
+-->
+
+
+    <!-- Form view for Member Payment -->
+    <record id="view_member_payment_form" model="ir.ui.view">
+        <field name="name">member.payment.form</field>
+        <field name="model">member.payment</field>
+        <field name="arch" type="xml">
+            <form string="Member Payment">
+                <header>
+                    <button name="create_invoice" type="object" string="Create Invoice" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="member_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Payment Structures">
+                            <field name="member_payment_structure_ids" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="payment_info"/>
+                                    <field name="sl_no"/>
+                                    <field name="subscription_fee"/>
+                                    <field name="deposit_amount"/>
+                                    <field name="extra_amount"/>
+                                    <field name="total_with_extra_amount"/>
+                                    <field name="is_selected"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+<!--
+    <record id="view_member_payment_form" model="ir.ui.view">
+        <field name="name">member.payment.form</field>
+        <field name="model">member.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="member_id"/>
+                    </group>
+                    <group>
+&lt;!&ndash;                        <field name="payment_structure_ids" readonly="1"/> &lt;!&ndash; Make base_amount readonly as it is computed &ndash;&gt;&ndash;&gt;
+&lt;!&ndash;                        <field name="selected_total"/> &lt;!&ndash; Make base_amount readonly as it is computed &ndash;&gt;&ndash;&gt;
+                        <field name="base_amount"/> &lt;!&ndash; Make base_amount readonly as it is computed &ndash;&gt;
+                        <field name="monthly_increment"/>
+                        <field name="paid_amount"/>
+                        <field name="due_amount" readonly="1"/>
+                        <field name="advance_amount" readonly="1"/>
+                        <field name="status" readonly="1"/>
+                        <field name="payment_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+-->
+
+
+    <record id="view_member_payment_tree" model="ir.ui.view">
+        <field name="name">member.payment.tree</field>
+        <field name="model">member.payment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="member_id"/>
+                <field name="paid_amount"/>
+                <field name="due_amount"/>
+                <field name="advance_amount"/>
+                <field name="status"/>
+                <field name="payment_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ir_cron_auto_increment_due_check" model="ir.cron">
+        <field name="name">Monthly Increment and Due Check</field>
+        <field name="model_id" ref="model_member_payment"/>
+        <field name="state">code</field>
+        <field name="code">model.auto_generate_invoice()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
+
+<!--
+<record id="ir_cron_update_base_amount" model="ir.cron">
+    <field name="name">Update Base Amount</field>
+    <field name="model_id" ref="member.diposit.structure.total_with_extra_amount"/>
+    <field name="state">code</field>
+    <field name="code">model._cron_update_base_amount()</field>
+    <field name="interval_number">1</field>
+    <field name="interval_type">days</field>
+    <field name="numbercall">-1</field>
+    <field name="active">True</field>
+</record>
+-->
+
+<!--
+    <record id="member_payment_base_amount" model="ir.asset">
+        <field name="name">Member Payment Base amount</field>
+        <field name="bundle">web.assets_backend</field>
+        <field name="active" eval="True"/>
+        <field name="sequence" eval="10"/>
+        <field name="target">backend</field>
+        <field name="path">/etohobil/static/src/js/member_payment_base_amount.js</field>
+    </record>
+-->
+
+
+
+</odoo>
