@@ -52,3 +52,18 @@ class ResPartner(models.Model):
     #         total_due = sum(record.due_amount for record in member.payment_record_ids if record.due_amount > 0)
     #         member.due_amount = total_due
 
+    def name_get(self):
+        result = []
+        for partner in self:
+            # Ensure member_id is zero-padded to two digits
+            member_id = partner.member_id.zfill(2) if partner.member_id and partner.member_id.isdigit() else (
+                        partner.member_id or "Unknown")
+            name = f"[{member_id}] {partner.name}"
+            result.append((partner.id, name))
+        return result
+
+    @api.model
+    def create(self, vals):
+        if not vals.get('member_id'):
+            vals['member_id'] = self.env['ir.sequence'].next_by_code('res.partner.member') or '0'
+        return super(ResPartner, self).create(vals)
