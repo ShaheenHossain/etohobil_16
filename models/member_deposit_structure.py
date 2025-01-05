@@ -528,6 +528,24 @@ class AccountMove(models.Model):
                 })
         return records
 
+    def action_add_all_products(self):
+        """Add all products to the invoice lines."""
+        product_templates = self.env['product.template'].search([])  # Fetch all products
+        for product in product_templates:
+            line_vals = {
+                'move_id': self.id,
+                'product_id': product.product_variant_id.id,
+                'quantity': 1,
+                'deposit_amount': product.deposit_amount,
+                'subscription_fee': product.subscription_fee,
+                'extra_amount': product.extra_amount,
+                'start_date': product.start_date,
+                'end_date': product.end_date,
+                'price_unit': product.list_price,  # Ensure the price is calculated correctly
+            }
+            self.env['account.move.line'].create(line_vals)
+
+
 
 
 class ResPartner(models.Model):

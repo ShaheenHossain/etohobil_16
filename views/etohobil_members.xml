@@ -24,6 +24,30 @@
         </field>
     </record>
 
+    <record id="view_res_partner_kanban_inherit_member" model="ir.ui.view">
+        <field name="name">res.partner.kanban.inherit.member</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@class='oe_kanban_details d-flex flex-column justify-content-between']/div/ul/li[.//field[@name='city']]" position="replace">
+                <li t-if="record.member_id.raw_value" class="o_text_overflow">
+                    <span>Member ID: <strong><field name="member_id"/></strong></span>
+                </li>
+                <br/>
+                <li t-if="record.mobile.raw_value" class="o_text_overflow">
+                    <span>Mobile: <strong><field name="mobile"/></strong></span>
+                </li>
+                <br/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+
+<!--
 <record id="view_res_partner_kanban_inherit_member" model="ir.ui.view">
     <field name="name">res.partner.kanban.inherit.member</field>
     <field name="model">res.partner</field>
@@ -33,12 +57,13 @@
             <li t-if="record.member_id.raw_value" class="o_text_overflow">
                 <span>Member ID: <strong><field name="member_id"/></strong></span>
 
-                <!-- <span><strong>Member ID: </strong></span>
-                <span><field name="member_id"/></span>-->
+                &lt;!&ndash; <span><strong>Member ID: </strong></span>
+                <span><field name="member_id"/></span>&ndash;&gt;
             </li>
         </xpath>
     </field>
 </record>
+-->
 
 
     <record id="view_res_partner_etohobil_member_filter" model="ir.ui.view">
