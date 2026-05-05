@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="portal_member_dashboard_action" model="ir.actions.act_window">
+        <field name="name">My Dashboard</field>
+        <field name="res_model">member.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form</field>
+        <field name="groups_id" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+
+    <record id="portal_member_payment_history_action" model="ir.actions.act_window">
+        <field name="name">My Payment History</field>
+        <field name="res_model">member.payment.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('member_id', '=', uid)]</field>
+        <field name="groups_id" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+</odoo>

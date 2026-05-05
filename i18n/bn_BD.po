@@ -1,0 +1,1121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* etohobil_16
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e-20230810\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-03 05:09+0000\n"
+"PO-Revision-Date: 2026-05-03 05:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+
+#. module: etohobil_16
+#: model:ir.module.module,name:etohobil_16
+msgid "eTohobil"
+msgstr "ইতহবিল"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_document_inherit
+msgid "<span>Deposit Amount</span>"
+msgstr "<span>আমানতের পরিমাণ</span>"
+
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_document_inherit
+msgid "<span>End Date</span>"
+msgstr "<span>শেষ তারিখ</span>"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_document_inherit
+msgid "<span>Extra Amount</span>"
+msgstr "<span>অতিরিক্ত পরিমাণ</span>"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_document_inherit
+msgid "<span>Start Date</span>"
+msgstr "<span>শুরু করার তারিখ</span>"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_document_inherit
+msgid "<span>Subs Fee</span>"
+msgstr "<span>সাবস ফি</span>"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_document_inherit
+msgid "<span>Total Months</span>"
+msgstr "<span>মোট মাস</span>"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_document_inherit_member_id
+msgid "<strong>Member ID:</strong>"
+msgstr "<strong>সদস্য আইডি:</strong>"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_module_cleanup_wizard
+msgid ""
+"<strong>Warning!</strong> This will permanently delete all payment products\n"
+"                    created by this module. This action cannot be undone."
+msgstr ""
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__member_deposit_structure_id
+msgid "Account Move"
+msgstr "অ্যাকাউন্ট সরান"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__active_member
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__active_member
+msgid "Active Member"
+msgstr "সক্রিয় সদস্য"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+msgid "Add All Payments"
+msgstr "সব পেমেন্ট যোগ করুন"
+
+#. module: etohobil_16
+#: model_terms:ir.actions.act_window,help:etohobil_16.etohobil_members_action
+msgid "Add a new member"
+msgstr "একটি নতুন সদস্য যোগ করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__add_to_invoice
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__add_to_invoice
+msgid "Add to Invoice"
+msgstr "চালানে যোগ করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__advance_amount
+msgid "Advance Amount"
+msgstr "অগ্রিম পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__advance_payment
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__advance_payment
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__advance_payment
+msgid "Advance Payment"
+msgstr "অগ্রিম পেমেন্ট"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_with_new_fields
+msgid "Advance Payment:"
+msgstr "অগ্রিম পেমেন্ট:"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_etohobil_member_filter
+msgid "All Members"
+msgstr "সকল সদস্য"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__amount_due
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__amount_due
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__amount_due
+msgid "Amount Due"
+msgstr "বকেয়া পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__amount_paid
+msgid "Amount Paid"
+msgstr "প্রদত্ত পরিমাণ"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+msgid ""
+"Are you sure you want to add all payment products? This may take a few "
+"moments."
+msgstr ""
+"আপনি কি সমস্ত অর্থপ্রদানের পণ্য যোগ করার বিষয়ে নিশ্চিত? এতে কয়েক মুহূর্ত "
+"সময় লাগতে পারে।"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__authorized_transaction_ids
+msgid "Authorized Transactions"
+msgstr "অনুমোদিত লেনদেন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__base_amount
+msgid "Base Amount"
+msgstr "বেস পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__base_current_amount
+msgid "Base Curr Amt"
+msgstr "বেস Curr Amt"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__total_base_current_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__total_base_current_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__total_base_current_amount
+msgid "Base Curr. Amount"
+msgstr "বেস কার। পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__res_partner__religion__budhist
+msgid "Budhist"
+msgstr "বৌদ্ধ"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_module_cleanup_wizard
+msgid "Cancel"
+msgstr "বাতিল করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,help:etohobil_16.field_product_product__add_to_invoice
+#: model:ir.model.fields,help:etohobil_16.field_product_template__add_to_invoice
+msgid "Check this to automatically add this product to invoices"
+msgstr "এই পণ্যটি স্বয়ংক্রিয়ভাবে চালানে যোগ করতে এটি পরীক্ষা করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,help:etohobil_16.field_product_product__is_selected
+#: model:ir.model.fields,help:etohobil_16.field_product_template__is_selected
+msgid "Check this to select this product for invoices"
+msgstr "চালানের জন্য এই পণ্যটি নির্বাচন করতে এটি পরীক্ষা করুন"
+
+#. module: etohobil_16
+#: model:ir.actions.act_window,name:etohobil_16.action_cleanup_and_uninstall
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_module_cleanup_wizard
+msgid "Clean Up Payment Products"
+msgstr "পেমেন্ট পণ্য পরিষ্কার করুন"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_module_cleanup_wizard
+msgid "Clean Up and Uninstall"
+msgstr "ক্লিন আপ এবং আনইনস্টল করুন"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_module_cleanup_wizard
+msgid "Clean up module data before uninstall"
+msgstr "আনইনস্টল করার আগে মডিউল ডেটা পরিষ্কার করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__committee_end_date
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__committee_end_date
+msgid "Committee End Date"
+msgstr "কমিটির শেষ তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__is_committee_member
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__is_committee_member
+msgid "Committee Member"
+msgstr "কমিটির সদস্য"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__committee_start_date
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__committee_start_date
+msgid "Committee Start Date"
+msgstr "কমিটি শুরুর তারিখ"
+
+#. module: etohobil_16
+#: model:ir.ui.menu,name:etohobil_16.etohobil_conf_menu
+msgid "Configuration"
+msgstr "কনফিগারেশন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__contact_address
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__contact_address
+msgid "Contact Address"
+msgstr "যোগাযোগের ঠিকানা"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_form
+msgid "Convert to Payment"
+msgstr "পেমেন্টে রূপান্তর করুন"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_member_payment_form
+msgid "Create Invoice"
+msgstr "চালান তৈরি করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__create_uid
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__create_uid
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__create_uid
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard__create_uid
+msgid "Created by"
+msgstr "দ্বারা নির্মিত"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__create_date
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__create_date
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__create_date
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard__create_date
+msgid "Created on"
+msgstr "এ তৈরি হয়েছে"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__currency_id
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__currency_id
+msgid "Currency"
+msgstr "মুদ্রা"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__current_amount
+msgid "Current Amount"
+msgstr "বর্তমান পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__current_base_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__current_base_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__current_base_amount
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+msgid "Current Base Amount"
+msgstr "বর্তমান পরিশোধযোগ্য"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_with_new_fields
+msgid "Current Base Amount:"
+msgstr "বর্তমান আমানত পরিমাণ:"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_etohobil_member_filter
+msgid "Customers"
+msgstr "গ্রাহকদের"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__date_of_brith
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__date_of_brith
+msgid "Date of Birth"
+msgstr "জন্ম তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__member_deposit_structure_id
+msgid "Deposit Structure"
+msgstr "আমানত কাঠামো"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__deposit_structure_ids
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__deposit_structure_ids
+msgid "Deposit Structures"
+msgstr "ডিপোজিট স্ট্রাকচার"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__total_deposited_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__total_deposited_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__total_deposited_amount
+msgid "Deposited Amount"
+msgstr "জমাকৃত আমানত"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__committee_designation
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__committee_designation
+#: model_terms:ir.ui.view,arch_db:etohobil_16.etohobil_view_partner_form
+msgid "Designation"
+msgstr "পদবী"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__display_name
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__display_name
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__display_name
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard__display_name
+msgid "Display Name"
+msgstr "প্রদর্শনের নাম"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__member_payment__status__due
+msgid "Due"
+msgstr "বকেয়া"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__due_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__due_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__due_amount
+msgid "Due Amount"
+msgstr "বকেয়া পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__email
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__email
+msgid "Email"
+msgstr "ইমেইল"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__end_date
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__end_date
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__end_date
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__end_date
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__end_date
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__end_date
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__end_date
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "End Date"
+msgstr "শেষ তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__end_date
+msgid "End Dt"
+msgstr "শেষ তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__extra_amount
+msgid "Ext Amt"
+msgstr "এক্সট্রা এমাউন্ট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__extra_amount
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+msgid "Extra"
+msgstr "অতিরিক্ত"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Extra Amount"
+msgstr "অতিরিক্ত পরিমাণ"
+
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__father_name
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__father_name
+msgid "Father's Name"
+msgstr "পিতার নাম"
+
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__father_name_bn
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__father_name_bn
+msgid "Father's Name Bangla"
+msgstr "পিতার নাম বাংলায়"
+
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__mother_name_bn
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__mother_name_bn
+msgid "Mother's Name Bangla"
+msgstr "মায়ের নাম বাংলায়"
+
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__subscription_fee
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__subscription_fee
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__subscription_fee
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__subscription_fee
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__subscription_fee
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__subscription_fee
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__subscription_fee
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__subscription_fee
+#: model_terms:ir.ui.view,arch_db:etohobil_16.product_template_account_tree
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_order_form_inherit_member_deposit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+msgid "Fee"
+msgstr "ফি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__grand_total
+msgid "Grand Total"
+msgstr "গ্র্যান্ড টোটাল"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_etohobil_member_filter
+msgid "Group By"
+msgstr "গ্রুপ"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__res_partner__religion__hindu
+msgid "Hindu"
+msgstr "হিন্দু"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard__confirm
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_module_cleanup_wizard
+msgid "I understand this will delete all payment products"
+msgstr "আমি বুঝি এটি সমস্ত অর্থপ্রদানের পণ্য মুছে ফেলবে"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__id
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__id
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__id
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard__id
+msgid "ID"
+msgstr "আইডি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__invoice_id
+msgid "Invoice"
+msgstr "ইনভয়েস"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__invoice_date
+msgid "Invoice Date"
+msgstr "ইনভয়েস তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__is_last_record
+msgid "Is Last Record"
+msgstr "শেষ রেকর্ড"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__is_payment_product
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__is_payment_product
+msgid "Is Payment"
+msgstr "পেমেন্ট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__is_selected
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__is_selected
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__is_selected
+msgid "Is Selected"
+msgstr "নির্বাচিত"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_account_move
+msgid "Journal Entry"
+msgstr "জার্নাল এন্ট্রি"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_account_move_line
+msgid "Journal Item"
+msgstr "জার্নাল আইটেম"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__res_partner__religion__khristan
+msgid "Khristan"
+msgstr "খ্রিস্টান"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure____last_update
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment____last_update
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history____last_update
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard____last_update
+msgid "Last Modified on"
+msgstr "সর্বশেষ সংশোধিত"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__write_uid
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__write_uid
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__write_uid
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard__write_uid
+msgid "Last Updated by"
+msgstr "সর্বশেষ আপডেট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__write_date
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__write_date
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__write_date
+#: model:ir.model.fields,field_description:etohobil_16.field_module_cleanup_wizard__write_date
+msgid "Last Updated on"
+msgstr "সর্বশেষ আপডেট হয়েছে"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__marital_status
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__marital_status
+msgid "Marital Status"
+msgstr "বৈবাহিক অবস্থা"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__res_partner__marital_status__married
+msgid "Married"
+msgstr "বিবাহিত"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__member_id
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment_history__member_id
+#: model_terms:ir.ui.view,arch_db:etohobil_16.account_invoice_view_tree
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+msgid "Member"
+msgstr "সদস্য"
+
+#. module: etohobil_16
+#: model:ir.actions.act_window,name:etohobil_16.member_deposit_structure_action
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__member_deposit_structure_id
+#: model:ir.ui.menu,name:etohobil_16.member_deposit_structure
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_tree
+msgid "Member Deposit Structure"
+msgstr "সদস্য আমানত কাঠামো"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__member_transaction_ids
+msgid "Member Deposit Transactions"
+msgstr "সদস্য আমানত লেনদেন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__member_id
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__member_id
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__member_id
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__member_id
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__member_id
+#: model_terms:ir.ui.view,arch_db:etohobil_16.etohobil_view_partner_form
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_etohobil_member_filter
+msgid "Member ID"
+msgstr "সদস্য আইডি"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_kanban_inherit_member
+msgid "Member ID:"
+msgstr "সদস্য আইডি:"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_member_payment_form
+msgid "Member Payment"
+msgstr "সদস্য পেমেন্ট"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_member_payment
+msgid "Member Payment Record"
+msgstr "সদস্য পেমেন্ট রেকর্ড"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_member_deposit_structure
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_form
+msgid "Member Payment Structure"
+msgstr "সদস্য পেমেন্ট কাঠামো"
+
+#. module: etohobil_16
+#: model:ir.ui.menu,name:etohobil_16.member_payment_menu
+msgid "Member Payments"
+msgstr "সদস্য পেমেন্ট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__photo
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__photo
+msgid "Member Photo"
+msgstr "সদস্য ছবি"
+
+#. module: etohobil_16
+#: model:ir.actions.act_window,name:etohobil_16.etohobil_members_action
+#: model:ir.ui.menu,name:etohobil_16.etohobil_main_menu
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_etohobil_member_filter
+msgid "Members"
+msgstr "সদস্যগণ"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.etohobil_view_partner_form
+msgid "Members Details"
+msgstr "সদস্যদের বিবরণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__mobile
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__mobile
+msgid "Mobile Number"
+msgstr "মোবাইল নম্বর"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_kanban_inherit_member
+msgid "Mobile:"
+msgstr "মোবাইল:"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__deposit_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__deposit_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__deposit_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__deposit_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__deposit_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__deposit_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__deposit_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__deposit_amount
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Monthly"
+msgstr "মাসিক"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__monthly_increment
+msgid "Monthly Increment"
+msgstr "মাসিক ইনক্রিমেন্ট"
+
+#. module: etohobil_16
+#: model:ir.actions.server,name:etohobil_16.ir_cron_auto_increment_due_check_ir_actions_server
+#: model:ir.cron,cron_name:etohobil_16.ir_cron_auto_increment_due_check
+msgid "Monthly Increment and Due Check"
+msgstr "মাসিক ইনক্রিমেন্ট এবং ডিউ চেক"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__mother_name
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__mother_name
+msgid "Mother's Name"
+msgstr "মায়ের নাম"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__res_partner__religion__muslim
+msgid "Muslim"
+msgstr "মুসলিম"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__nid
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__nid
+msgid "NID"
+msgstr "এনআইডি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__nominee_name
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__nominee_name
+msgid "Nominee Name"
+msgstr "মনোনীত ব্যক্তির নাম"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__nominee_photo
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__nominee_photo
+msgid "Nominee Photo"
+msgstr "মনোনীত ছবি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__occupation
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__occupation
+msgid "Occupation"
+msgstr "পেশা"
+
+#. module: etohobil_16
+#: model_terms:ir.actions.act_window,help:etohobil_16.etohobil_members_action
+msgid ""
+"Odoo helps you easily track all activities related to a member:\n"
+"                  Current Membership Status, Discussions and History of Membership, etc."
+msgstr ""
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__member_payment__status__paid
+msgid "Paid"
+msgstr "পেড"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__paid_amount
+msgid "Paid Amount"
+msgstr "প্রদত্ত পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__partner_id
+msgid "Partner"
+msgstr "অংশীদার"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__partner_credit_warning
+msgid "Partner Credit Warning"
+msgstr "অংশীদার ক্রেডিট সতর্কতা"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__payment_date
+msgid "Payment Date"
+msgstr "অর্থপ্রদানের তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_member_payment_history
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__payment_history_ids
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__payment_history_ids
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_partner_form_inherit
+msgid "Payment History"
+msgstr "পেমেন্ট ইতিহাস"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__payment_info
+msgid "Payment Info"
+msgstr "পেমেন্ট তথ্য"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__account_move__move_type__out_invoice
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+msgid "Payment Invoice"
+msgstr "পেমেন্ট ইনভয়েস"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__payment_id
+msgid "Payment Record"
+msgstr "পেমেন্ট রেকর্ড"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__member_payment_structure_ids
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_member_payment_form
+msgid "Payment Structures"
+msgstr "পেমেন্ট স্ট্রাকচার"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_with_new_fields
+msgid "Payment Summary"
+msgstr "পেমেন্ট সারাংশ"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_account_payment
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+msgid "Payments"
+msgstr "পেমেন্ট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__permanent_address
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__permanent_address
+msgid "Permanent Address"
+msgstr "স্থায়ী ঠিকানা"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__present_address
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__present_address
+msgid "Present Address"
+msgstr "বর্তমান ঠিকানা"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_product_template
+msgid "Product"
+msgstr "পণ্য"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__account_move_id
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__related_account_move_id
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__related_account_move_id
+msgid "Related Account Move"
+msgstr "সম্পর্কিত অ্যাকাউন্ট সরানো"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__relation_with_nominee
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__relation_with_nominee
+msgid "Relation with Nominee"
+msgstr "মনোনীত ব্যক্তির সাথে সম্পর্ক"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__religion
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__religion
+msgid "Religion"
+msgstr "ধর্ম"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__remaining_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__remaining_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__remaining_amount
+msgid "Remaining Amount"
+msgstr "অবশিষ্ট পরিমাণ"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_with_new_fields
+msgid "Remaining/Due Amount:"
+msgstr "অবশিষ্ট/বকেয়া পরিমাণ:"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__sale_order_line_id
+msgid "Sale Order Line"
+msgstr "সেল অর্ডার লাইন"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_sale_order
+msgid "Sales Order"
+msgstr "বিক্রয় আদেশ"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "সেলস অর্ডার লাইন"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_etohobil_member_filter
+msgid "Salesperson"
+msgstr "বিক্রয়কর্মী"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__selected_total
+msgid "Selected Total"
+msgstr "নির্বাচিত মোট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__sequence
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__sequence
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__sequence
+msgid "Sequence"
+msgstr "সিকোয়েন্স"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_form
+msgid "Set Current Date"
+msgstr "বর্তমান তারিখ সেট করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__show_advance_payment
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__show_advance_payment
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__show_advance_payment
+msgid "Show Advance Payment"
+msgstr "অগ্রিম পেমেন্ট দেখান"
+
+#. module: etohobil_16
+#: model:ir.model.fields.selection,name:etohobil_16.selection__res_partner__marital_status__single
+msgid "Single"
+msgstr "একক"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__sl_no
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__sl_no
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__sl_no
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__sl_no
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__sl_no
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__sl_no
+msgid "Sl"
+msgstr "ক্রম"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__start_date
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__start_date
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__start_date
+msgid "St. Date"
+msgstr "সেন্ট তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__start_date
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__start_date
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__start_date
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__start_date
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Start Date"
+msgstr "শুরুর তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__start_date
+msgid "Start Dt"
+msgstr "শুরু তারিখ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_payment__status
+msgid "Status"
+msgstr "স্ট্যাটাস"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_account_move_member_form
+msgid "Sub Total"
+msgstr "উপ মোট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__subtotal_subscription_amount
+msgid "Sub- Fee"
+msgstr "উপ- ফি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__subtotal_amount
+msgid "Sub-Total"
+msgstr "উপ-মোট"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Subscription Fee"
+msgstr "সাবস্ক্রিপশন ফি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__subtotal_subscription_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__subtotal_subscription_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__subtotal_subscription_amount
+msgid "Subtl Fee"
+msgstr "সাবটেল ফি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__subtotal_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__subtotal_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__subtotal_amount
+msgid "Subtotal"
+msgstr "সাবটোটাল"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__subtotal_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__subtotal_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__subtotal_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__subtotal_amount
+msgid "Subtotal Amount"
+msgstr "সাবটোটাল পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__subtotal_subscription_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__subtotal_subscription_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__subtotal_subscription_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__subtotal_subscription_amount
+msgid "Subtotal Fee"
+msgstr "সাবটোটাল ফি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__supplier_taxes_id
+msgid "Supplier Taxes"
+msgstr "সরবরাহকারী কর"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_tree
+msgid "Sync All to Products"
+msgstr "সমস্ত পণ্যের সাথে সিঙ্ক করুন"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__total_months
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__total_months
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__total_months
+msgid "T. Month"
+msgstr "টি. মাস"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__total_months
+msgid "T. Months"
+msgstr "T. মাস"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__total_years
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__total_years
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__total_years
+msgid "T. Years"
+msgstr "টি. বছর"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__taxes_id
+msgid "Taxes"
+msgstr "কর"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_module_cleanup_wizard
+msgid ""
+"This will delete all payment products and uninstall the module. Continue?"
+msgstr ""
+"এটি সমস্ত অর্থপ্রদানের পণ্য মুছে ফেলবে এবং মডিউলটি আনইনস্টল করবে৷ চালিয়ে "
+"যান?"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__total_years
+msgid "Tot Yrs"
+msgstr "মোট বছর"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order__amount_total
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_tree
+#: model_terms:ir.ui.view,arch_db:etohobil_16.product_template_account_tree
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_partner_form_inherit
+msgid "Total"
+msgstr "মোট"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Total Amount"
+msgstr "মোট পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__deposited_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__deposited_amount
+msgid "Total Deposited Amount"
+msgstr "মোট জমাকৃত পরিমাণ"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.report_invoice_with_new_fields
+msgid "Total Deposited Amount:"
+msgstr "মোট জমার পরিমাণ:"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_tree
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Total Fee"
+msgstr "মোট ফি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order__customer_invoice_total
+msgid "Total Invoice Amount"
+msgstr "মোট চালানের পরিমাণ"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__total_months
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__total_months
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__total_months
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__total_months
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Total Months"
+msgstr "মোট মাস"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Total With Fee"
+msgstr "ফি সহ মোট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__total_years
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__total_years
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__total_years
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__total_years
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Total Years"
+msgstr "মোট বছর"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__total_with_extra_amount
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_product_form_inherit
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_product_template_form_inherit
+msgid "Total with Extra"
+msgstr "অতিরিক্ত সহ মোট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__total_with_extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__total_with_extra_amount
+msgid "Total with Extra Amount"
+msgstr "অতিরিক্ত পরিমাণ সহ মোট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_sale_order_line__total_amount_with_subscription
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_tree
+msgid "Total with Fee"
+msgstr "ফি সহ মোট"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__total_with_extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__total_with_extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__total_with_extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__total_with_extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__total_with_extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__total_with_extra_amount
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__total_with_extra_amount
+msgid "Total+Extra"
+msgstr "মোট + অতিরিক্ত"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__total_amount_with_subscription
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__total_amount_with_subscription
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move_line__total_amount_with_subscription
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__total_amount_with_subscription
+#: model:ir.model.fields,field_description:etohobil_16.field_member_deposit_structure__total_amount_with_subscription
+#: model:ir.model.fields,field_description:etohobil_16.field_product_product__total_amount_with_subscription
+#: model:ir.model.fields,field_description:etohobil_16.field_product_template__total_amount_with_subscription
+msgid "Total+Fee"
+msgstr "মোট + ফি"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_account_bank_statement_line__move_type
+#: model:ir.model.fields,field_description:etohobil_16.field_account_move__move_type
+#: model:ir.model.fields,field_description:etohobil_16.field_account_payment__move_type
+msgid "Type"
+msgstr "টাইপ"
+
+#. module: etohobil_16
+#: model:ir.actions.server,name:etohobil_16.ir_cron_update_last_line_end_date_ir_actions_server
+#: model:ir.cron,cron_name:etohobil_16.ir_cron_update_last_line_end_date
+msgid "Update Last Line End Date Weekly (Sunday)"
+msgstr "শেষ লাইনের শেষ তারিখ সাপ্তাহিক আপডেট করুন (রবিবার)"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.view_res_partner_etohobil_member_filter
+msgid "Vendors"
+msgstr "বিক্রেতারা"
+
+#. module: etohobil_16
+#: model:ir.model.fields,field_description:etohobil_16.field_res_partner__whatsapp
+#: model:ir.model.fields,field_description:etohobil_16.field_res_users__whatsapp
+msgid "Whatsapp Number"
+msgstr "হোয়াটসঅ্যাপ নম্বর"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.etohobil_view_partner_form
+msgid "e.g. Director"
+msgstr "যেমন পরিচালক"
+
+#. module: etohobil_16
+#: model:ir.ui.menu,name:etohobil_16.etohobil_root
+msgid "eTohobil"
+msgstr "ইতহবিল"
+
+#. module: etohobil_16
+#: model:ir.model,name:etohobil_16.model_res_partner
+msgid "eTohobil Members"
+msgstr "ইতহবিল সদস্যগণ"
+
+#. module: etohobil_16
+#: model_terms:ir.ui.view,arch_db:etohobil_16.member_deposit_structure_tree
+msgid "subtotal"
+msgstr "সাবটোটাল"

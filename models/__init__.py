@@ -9,3 +9,4 @@ from . import etohobil_payment_history
 # from . import increment_history
 from . import member_deposit_structure
 # from . import property_asset
+from . import member_dashboard

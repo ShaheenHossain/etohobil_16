@@ -1,16 +1,18 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _, SUPERUSER_ID
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import UserError
+from datetime import date
 
 import logging
 
 _logger = logging.getLogger(__name__)
 
-from odoo.exceptions import UserError
 
 class MemberDepositStructure(models.Model):
     _name = 'member.deposit.structure'
     _description = 'Member Payment Structure'
+
 
     payment_id = fields.Many2one('member.payment', string="Payment Record", ondelete='cascade')
     sequence = fields.Integer(required=True, default=1)
@@ -43,6 +45,104 @@ class MemberDepositStructure(models.Model):
                                 string="Taxes")
     supplier_taxes_id = fields.Many2many('account.tax', 'member_deposit_structure_account_tax_rel', 'member_id',
                                          'tax_id', string="Supplier Taxes")
+
+    is_last_record = fields.Boolean(string="Is Last Record", compute='_compute_is_last_record', store=False)
+
+
+    @api.depends('payment_id', 'sequence')
+    def _compute_is_last_record(self):
+        for record in self:
+            records = self.search([('payment_id', '=', record.payment_id.id)])
+            max_seq = max(records.mapped('sequence') or [0])
+            record.is_last_record = (record.sequence == max_seq)
+
+
+
+    def cron_update_last_end_date(self):
+        """Update the last record's end date to current month's end date"""
+        _logger.info("=== Starting monthly end date update ===")
+
+        # Get current date and calculate end of current month
+        today = fields.Date.today()
+        # Calculate last day of current month
+        next_month = today + relativedelta(months=1)
+        end_of_current_month = next_month - relativedelta(days=next_month.day)
+
+        _logger.info(f"Today: {today}, Target end date: {end_of_current_month}")
+
+        updated_count = 0
+
+        # Get all deposit structure records
+        all_records = self.search([])
+
+        if not all_records:
+            _logger.warning("No deposit structure records found!")
+            return
+
+        # Group records by payment_id manually
+        records_by_payment = {}
+        for record in all_records:
+            payment_key = record.payment_id.id if record.payment_id else None
+            if payment_key not in records_by_payment:
+                records_by_payment[payment_key] = []
+            records_by_payment[payment_key].append(record)
+
+        # For each payment group, find the record with highest sequence
+        for payment_key, records in records_by_payment.items():
+            # Sort records by sequence descending and get the first one
+            sorted_records = sorted(records, key=lambda r: r.sequence or 0, reverse=True)
+            if sorted_records:
+                last_record = sorted_records[0]
+
+                # Update if end_date is different
+                if last_record.end_date != end_of_current_month:
+                    last_record.write({
+                        'end_date': end_of_current_month
+                    })
+                    # Force recomputation
+                    last_record._compute_total_years_months()
+                    last_record._compute_totals()
+
+                    # Update associated product if exists
+                    if last_record.payment_info:
+                        last_record.payment_info.write({'end_date': end_of_current_month})
+                        _logger.info(f"Updated product {last_record.payment_info.name}")
+
+                    updated_count += 1
+                    _logger.info(
+                        f"Updated record ID {last_record.id} (Payment: {payment_key}, Sequence: {last_record.sequence})")
+                else:
+                    _logger.info(f"Record ID {last_record.id} already has correct end date")
+
+        _logger.info(f"=== Monthly update completed. Updated {updated_count} records. ===")
+
+    def update_end_dates_daily(self):
+        """Run this daily to check and update end dates"""
+        today = fields.Date.today()
+
+        # Check if today is the last day of the month
+        tomorrow = today + relativedelta(days=1)
+        if tomorrow.month != today.month:  # Today is last day of month
+            self.cron_update_last_end_date()
+            return True
+        return False
+
+    @api.model
+    def create(self, vals):
+        # Auto-select new deposit structures
+        if 'is_selected' not in vals:
+            vals['is_selected'] = True
+        return super(MemberDepositStructure, self).create(vals)
+
+    def action_set_current_end_date(self):
+        for record in self:
+            if not record.is_last_record:
+                raise UserError("Only the last record can be updated.")
+            today = fields.Date.context_today(self)
+            end_of_month = today.replace(day=1) + relativedelta(months=1) - relativedelta(days=1)
+            record.end_date = end_of_month
+            record._compute_total_years_months()
+            record._compute_totals()
 
     @api.depends('total_with_extra_amount')
     def _compute_grand_total(self):
@@ -86,8 +186,11 @@ class MemberDepositStructure(models.Model):
 
             payment_name = record.payment_id.name if record.payment_id and hasattr(record.payment_id,
                                                                                    'name') else 'Payment'
+            # Ensure the serial number (sl_no) is zero-padded to 2 digits
+            sl_no_padded = str(record.sl_no).zfill(2)  # Convert to string and pad with zeros
+
             product_vals = {
-                'name': f"{payment_name} - {record.sl_no}",
+                'name': f"{payment_name} - {sl_no_padded}",  # Use the zero-padded number
                 'type': 'service',
                 'list_price': record.total_with_extra_amount,  # Set from total_with_extra_amount
                 'standard_price': record.total_amount_with_subscription,  # Set from total_amount_with_subscription
@@ -109,12 +212,64 @@ class MemberDepositStructure(models.Model):
             product = self.env['product.product'].create(product_vals)
             record.payment_info = product.id
 
-    def update_last_line_end_date(self):
-        last_record = self.search([], order="sequence desc", limit=1)
-        if last_record and last_record.end_date:
-            last_record.end_date += relativedelta(months=1)
-            last_record._compute_total_years_months()
-            last_record._compute_totals()
+
+    def write(self, vals):
+        res = super(MemberDepositStructure, self).write(vals)
+        if not self.env.context.get('from_sync'):
+            for record in self:
+                if record.payment_info:
+                    product_vals = {
+                        'list_price': record.total_with_extra_amount,
+                        'standard_price': record.total_amount_with_subscription,
+                        'deposit_amount': record.deposit_amount,
+                        'subscription_fee': record.subscription_fee,
+                        'extra_amount': record.extra_amount,
+                        'start_date': record.start_date,
+                        'end_date': record.end_date,
+                        'total_years': record.total_years,
+                        'total_months': record.total_months,
+                        'subtotal_amount': record.subtotal_amount,
+                        'subtotal_subscription_amount': record.subtotal_subscription_amount,
+                        'total_amount_with_subscription': record.total_amount_with_subscription,
+                        'total_with_extra_amount': record.total_with_extra_amount,
+                    }
+                    record.payment_info.with_context(from_sync=True).write(product_vals)
+        return res
+
+    def update_last_record_end_date_auto(self):
+        payments = self.env['member.payment'].search([])
+
+        today = fields.Date.context_today(self)
+        end_of_month = today.replace(day=1) + relativedelta(months=1) - relativedelta(days=1)
+
+        for payment in payments:
+            last_record = self.search(
+                [('payment_id', '=', payment.id)],
+                order="sequence desc",
+                limit=1
+            )
+
+            if last_record and last_record.end_date != end_of_month:
+                last_record.write({'end_date': end_of_month})
+
+    def read(self, fields=None, load='_classic_read'):
+        self.update_last_record_end_date_auto()
+        return super().read(fields, load)
+
+
+
+    def uninstall_hook(cr, registry):
+        env = api.Environment(cr, SUPERUSER_ID, {})
+
+        # Delete only products created from this module
+        products = env['product.product'].search([
+            ('is_deposit_product', '=', True)
+        ])
+        products.unlink()
+
+
+
+
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
@@ -131,6 +286,22 @@ class ProductTemplate(models.Model):
     subtotal_subscription_amount = fields.Float(string="Subtl Fee", compute='_compute_totals', store=True)
     total_amount_with_subscription = fields.Float(string="Total+Fee", compute='_compute_totals', store=True)
     total_with_extra_amount = fields.Float(string="Total+Extra", compute='_compute_totals', store=True)
+
+    is_payment_product = fields.Boolean(string="Is Payment", default=True)
+
+    is_selected = fields.Boolean(string="Is Selected", default=False,
+                                 help="Check this to select this product for invoices")
+
+    # Add this field to your existing ProductTemplate class
+    add_to_invoice = fields.Boolean(string="Add to Invoice", default=False,
+                                    help="Check this to automatically add this product to invoices")
+
+
+    @api.constrains('is_payment_product', 'deposit_amount', 'subscription_fee', 'extra_amount')
+    def _check_payment_product_fields(self):
+        for record in self:
+            if record.is_payment_product and not (record.deposit_amount and record.subscription_fee):
+                raise UserError("Payment products must have Deposit Amount and Subscription Fee filled!")
 
     @api.depends('deposit_amount', 'subscription_fee', 'extra_amount')
     def _compute_selected_total(self):
@@ -155,14 +326,76 @@ class ProductTemplate(models.Model):
                 record.total_months = 1
 
 
-    @api.depends('deposit_amount', 'subscription_fee', 'total_months', 'extra_amount')
+    @api.depends('deposit_amount', 'subscription_fee', 'total_months', 'extra_amount', 'is_payment_product')
     def _compute_totals(self):
         for record in self:
-            record.subtotal_amount = record.deposit_amount * record.total_months
-            record.subtotal_subscription_amount = record.subscription_fee * record.total_months
-            record.total_amount_with_subscription = record.subtotal_amount + record.subtotal_subscription_amount
-            record.total_with_extra_amount = record.total_amount_with_subscription + record.extra_amount
-            record.list_price = record.total_with_extra_amount
+            if record.is_payment_product:
+                record.subtotal_amount = record.deposit_amount * record.total_months
+                record.subtotal_subscription_amount = record.subscription_fee * record.total_months
+                record.total_amount_with_subscription = record.subtotal_amount + record.subtotal_subscription_amount
+                record.total_with_extra_amount = record.total_amount_with_subscription + record.extra_amount
+            else:
+                # Reset custom fields when not a payment product
+                record.subtotal_amount = 0.0
+                record.subtotal_subscription_amount = 0.0
+                record.total_amount_with_subscription = 0.0
+                record.total_with_extra_amount = 0.0
+
+
+    def write(self, vals):
+        res = super(ProductTemplate, self).write(vals)
+        if not self.env.context.get('from_sync'):
+            for product in self:
+                structure = self.env['member.deposit.structure'].search([('payment_info', '=', product.id)], limit=1)
+                if structure:
+                    structure_vals = {
+                        'deposit_amount': product.deposit_amount,
+                        'subscription_fee': product.subscription_fee,
+                        'extra_amount': product.extra_amount,
+                        'start_date': product.start_date,
+                        'end_date': product.end_date,
+                    }
+                    structure.with_context(from_sync=True).write(structure_vals)
+        return res
+
+    # Ensure that `create_bill` logic correctly refers to the product price
+    @api.model
+    def create_bill(self, order):
+        # If the product is a payment product, ensure the price is correctly computed
+        for line in order.order_line:
+            if line.product_id.is_payment_product:
+                line.price_unit = line.product_id.total_with_extra_amount
+            else:
+                line.price_unit = line.product_id.lst_price  # Or your normal price logic here
+        return super(ProductTemplate, self).create_bill(order)
+
+
+    def uninstall_hook(cr, registry):
+        """Remove all products created by this module during uninstall"""
+        env = api.Environment(cr, SUPERUSER_ID, {})
+
+        # Delete only products created from this module
+        # Using a specific field to identify them
+        products = env['product.product'].search([
+            ('is_payment_product', '=', True)  # Your custom field
+        ])
+
+        if products:
+            _logger.info(f"Uninstalling module: Deleting {len(products)} payment products")
+            products.unlink()
+
+        # Also delete product templates
+        product_templates = env['product.template'].search([
+            ('is_payment_product', '=', True)
+        ])
+
+        if product_templates:
+            _logger.info(f"Uninstalling module: Deleting {len(product_templates)} payment product templates")
+            product_templates.unlink()
+
+        _logger.info("Module uninstall completed - All payment products removed")
+
+
 
 
 class SaleOrderLine(models.Model):
@@ -274,6 +507,7 @@ class SaleOrderLine(models.Model):
         })
         return invoice_line_vals
 
+
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
@@ -323,6 +557,7 @@ class SaleOrder(models.Model):
             else:
                 order.customer_invoice_total = 0.0
 
+
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
@@ -341,24 +576,20 @@ class AccountMoveLine(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product_id_custom(self):
-        """ Update custom fields based on the selected product. """
         if self.product_id:
-            self.deposit_amount = self.product_id.deposit_amount
-            self.subscription_fee = self.product_id.subscription_fee
-            self.extra_amount = self.product_id.extra_amount
-            self.start_date = self.product_id.start_date
-            self.end_date = self.product_id.end_date
-
-    @api.depends('deposit_amount', 'subscription_fee', 'total_months', 'extra_amount')
-    def _compute_totals(self):
-        """ Recompute all custom total fields. """
-        for line in self:
-            line.subtotal_amount = line.deposit_amount * line.total_months
-            line.subtotal_subscription_amount = line.subscription_fee * line.total_months
-            line.total_amount_with_subscription = line.subtotal_amount + line.subtotal_subscription_amount
-            line.total_with_extra_amount = line.total_amount_with_subscription + line.extra_amount
-            line.price_subtotal = line.total_with_extra_amount
-            line.price_unit = line.price_subtotal / (line.quantity or 1)
+            if self.product_id.is_payment_product:
+                self.deposit_amount = self.product_id.deposit_amount
+                self.subscription_fee = self.product_id.subscription_fee
+                self.extra_amount = self.product_id.extra_amount
+                self.start_date = self.product_id.start_date
+                self.end_date = self.product_id.end_date
+            else:
+                # Reset custom fields for non-payment products
+                self.deposit_amount = 0.0
+                self.subscription_fee = 0.0
+                self.extra_amount = 0.0
+                self.start_date = False
+                self.end_date = False
 
     @api.depends('start_date', 'end_date')
     def _compute_total_years_months(self):
@@ -387,10 +618,6 @@ class AccountMoveLine(models.Model):
             if line.price_subtotal and line.quantity:
                 line.price_unit = line.price_subtotal / line.quantity
 
-from odoo import models, fields, api
-from odoo.exceptions import UserError
-from dateutil.relativedelta import relativedelta
-
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -411,7 +638,9 @@ class AccountMove(models.Model):
     total_amount_with_subscription = fields.Float(string="Total+Fee", compute='_compute_totals', store=True)
     total_with_extra_amount = fields.Float(string="Total+Extra", compute='_compute_totals', store=True)
 
+    # current_base_amount = fields.Float(string="Current Base Amount", compute="_compute_current_base_amount", store=True)
     current_base_amount = fields.Float(string="Current Base Amount", compute="_compute_current_base_amount", store=False, readonly=True)
+
     total_base_current_amount = fields.Float(string="Base Curr. Amount", compute="_compute_total_base_current_amount", store=True)
     amount_due = fields.Float(string="Amount Due", compute="_compute_amount_due", store=False, readonly=True)
 
@@ -465,6 +694,7 @@ class AccountMove(models.Model):
             grand_total = self.env['member.deposit.structure'].search([]).mapped('total_with_extra_amount')
             record.current_base_amount = sum(grand_total)
 
+
     @api.depends('line_ids.payment_id', 'line_ids.payment_id.state')
     def _compute_total_deposited_amount(self):
         for record in self:
@@ -499,6 +729,7 @@ class AccountMove(models.Model):
         for record in self:
             record._compute_total_deposited_amount()
 
+
     # Constraints
     @api.constrains('partner_id', 'move_type')
     def _check_member_field(self):
@@ -506,44 +737,77 @@ class AccountMove(models.Model):
             if record.move_type == 'out_invoice' and not record.partner_id:
                 raise UserError("The field 'Member' is required, please complete it to validate the Member Invoice.")
 
-    # Onchange
-    @api.onchange('partner_id')
-    def _onchange_partner_id(self):
-        for record in self:
-            if record.partner_id:
-                deposit_structure = self.env['member.deposit.structure'].search([
-                    ('partner_id', '=', record.partner_id.id)
-                ], limit=1)
-                record.current_base_amount = deposit_structure.base_current_amount if deposit_structure else 0.0
-
-    # Override Create
-    @api.model_create_multi
-    def create(self, vals_list):
-        records = super(AccountMove, self).create(vals_list)
-        for record in records:
-            if record.partner_id:
-                self.env['member.payment.history'].create({
-                    'member_id': record.partner_id.id,
-                    'invoice_id': record.id,
-                })
-        return records
-
     def action_add_all_products(self):
-        """Add all products to the invoice lines."""
-        product_templates = self.env['product.template'].search([])  # Fetch all products
-        for product in product_templates:
-            line_vals = {
-                'move_id': self.id,
-                'product_id': product.product_variant_id.id,
-                'quantity': 1,
-                'deposit_amount': product.deposit_amount,
-                'subscription_fee': product.subscription_fee,
-                'extra_amount': product.extra_amount,
-                'start_date': product.start_date,
-                'end_date': product.end_date,
-                'price_unit': product.list_price,  # Ensure the price is calculated correctly
+        """Add all payment products to the invoice"""
+
+        # First try to add from deposit structures
+        deposit_structures = self.env['member.deposit.structure'].search([
+            ('partner_id', '=', self.partner_id.id),
+            ('payment_info', '!=', False)
+        ])
+
+        added_count = 0
+
+        if deposit_structures:
+            for structure in deposit_structures:
+                existing_line = self.invoice_line_ids.filtered(
+                    lambda line: line.product_id.id == structure.payment_info.id
+                )
+
+                if not existing_line:
+                    line_vals = {
+                        'move_id': self.id,
+                        'product_id': structure.payment_info.id,
+                        'quantity': 1,
+                        'deposit_amount': structure.deposit_amount,
+                        'subscription_fee': structure.subscription_fee,
+                        'extra_amount': structure.extra_amount,
+                        'start_date': structure.start_date,
+                        'end_date': structure.end_date,
+                        'price_unit': structure.total_with_extra_amount,
+                    }
+                    self.env['account.move.line'].create(line_vals)
+                    added_count += 1
+        else:
+            product_templates = self.env['product.template'].search([
+                ('is_payment_product', '=', True)
+            ])
+
+            for product in product_templates:
+                existing_line = self.invoice_line_ids.filtered(
+                    lambda line: line.product_id.id == product.product_variant_id.id
+                )
+
+                if not existing_line:
+                    line_vals = {
+                        'move_id': self.id,
+                        'product_id': product.product_variant_id.id,
+                        'quantity': 1,
+                        'deposit_amount': product.deposit_amount,
+                        'subscription_fee': product.subscription_fee,
+                        'extra_amount': product.extra_amount,
+                        'start_date': product.start_date,
+                        'end_date': product.end_date,
+                        'price_unit': product.list_price or product.standard_price or 0.0,
+                    }
+                    self.env['account.move.line'].create(line_vals)
+                    added_count += 1
+
+        if added_count > 0:
+            # Refresh the form view to show new lines
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'account.move',
+                'res_id': self.id,
+                'view_mode': 'form',
+                'view_id': self.env.ref('account.view_move_form').id,
+                'target': 'current',
+                'flags': {'form': {'action_buttons': True, 'options': {'mode': 'edit'}}},
             }
-            self.env['account.move.line'].create(line_vals)
+        else:
+            raise UserError("No products were added. They may already exist in the invoice.")
+
+
 
 
 
@@ -557,29 +821,27 @@ class ResPartner(models.Model):
 
     payment_history_ids = fields.One2many('member.payment.history', 'member_id', string="Payment History")
 
-    def sync_payment_history(self):
-        for partner in self:
-            invoices = self.env['account.move'].search([('partner_id', '=', partner.id), ('state', '=', 'posted')])
-            for invoice in invoices:
-                self.env['member.payment.history'].create({
-                    'member_id': partner.id,
-                    'invoice_id': invoice.id,
-                    'currency_id': invoice.currency_id.id,  # Fetch currency from the invoice
-                })
 
 
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        records = super(AccountPayment, self).create(vals_list)
-        for record in records:
-            if record.partner_id:
-                invoices = self.env['account.move'].search([
-                    ('partner_id', '=', record.partner_id.id),
-                    ('state', '=', 'posted')  # Consider only posted invoices
-                ])
-                for invoice in invoices:
-                    invoice._compute_total_deposited_amount()
-        return records
+    def _update_related_invoices(self):
+        for payment in self:
+            invoices = self.env['account.move'].search([
+                ('partner_id', '=', payment.partner_id.id),
+                ('move_type', '=', 'out_invoice')
+            ])
+            invoices._compute_total_deposited_amount()
+            invoices._compute_remaining_and_advance()
+
+    def action_post(self):
+        res = super().action_post()
+        self._update_related_invoices()
+        return res
+
+    def write(self, vals):
+        res = super().write(vals)
+        self._update_related_invoices()
+        return res
+

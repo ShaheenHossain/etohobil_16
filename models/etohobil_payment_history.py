@@ -14,12 +14,23 @@ class MemberPaymentHistory(models.Model):
         default=lambda self: self.env.company.currency_id.id
     )
 
-
-
-    # @api.model
-    # def create_payment_history(self, invoice):
-    #     self.env['member.payment.history'].create({
-    #         'member_id': invoice.partner_id.id,
-    #         'invoice_id': invoice.id,
-    #         'amount_paid': invoice.amount_total,
-    #     })
+    payment_date = fields.Date(string="Payment Date", required=True,
+                               default=fields.Date.context_today)  # Changed from invoice_date
+    amount = fields.Float(string="Amount", required=True)
+    payment_type = fields.Selection([
+        ('monthly', 'Monthly Deposit'),
+        ('extra', 'Extra Payment'),
+        ('advance', 'Advance Payment')
+    ], string="Payment Type", required=True, default='monthly')
+    payment_method = fields.Selection([
+        ('cash', 'Cash'),
+        ('bank', 'Bank Transfer'),
+        ('check', 'Check')
+    ], string="Payment Method")
+    reference = fields.Char(string="Reference Number")
+    notes = fields.Text(string="Notes")
+    status = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirmed', 'Confirmed'),
+        ('cancelled', 'Cancelled')
+    ], string="Status", default='draft')

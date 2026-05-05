@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Monthly Deposit Report -->
+    <record id="view_monthly_deposit_report_tree" model="ir.ui.view">
+        <field name="name">monthly.deposit.report.tree</field>
+        <field name="model">monthly.deposit.report</field>
+        <field name="arch" type="xml">
+            <tree string="Monthly Deposit Report">
+                <field name="year"/>
+                <field name="month"/>
+                <field name="member_id"/>
+                <field name="member_name"/>
+                <field name="deposit_amount" sum="Total Deposits"/>
+                <field name="subscription_fee" sum="Total Fees"/>
+                <field name="total_amount" sum="Grand Total"/>
+                <field name="payment_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Yearly Financial Report -->
+    <record id="view_yearly_financial_report_tree" model="ir.ui.view">
+        <field name="name">yearly.financial.report.tree</field>
+        <field name="model">yearly.financial.report</field>
+        <field name="arch" type="xml">
+            <tree string="Yearly Financial Report">
+                <field name="fiscal_year"/>
+                <field name="total_income" sum="Total Income"/>
+                <field name="total_expense" sum="Total Expenses"/>
+                <field name="net_profit" sum="Net Profit"/>
+                <field name="cash_in_hand"/>
+                <field name="bank_balance"/>
+                <field name="total_assets"/>
+                <field name="total_liabilities"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home" name="Member Dashboard" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>My Member Dashboard</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="alert alert-info text-center">
+                                        <h5>Total Deposited</h5>
+                                        <h3><t t-esc="member_dashboard.total_deposited or '0.00'"/></h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="alert alert-warning text-center">
+                                        <h5>Total Due</h5>
+                                        <h3><t t-esc="member_dashboard.total_due or '0.00'"/></h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="alert alert-success text-center">
+                                        <h5>Monthly Deposit</h5>
+                                        <h3><t t-esc="member_dashboard.monthly_deposit or '0.00'"/></h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="alert alert-secondary text-center">
+                                        <h5>Next Due Date</h5>
+                                        <h3><t t-esc="member_dashboard.next_payment_due or 'N/A'"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5 class="mt-4">Recent Payment History</h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="payment_history" t-as="payment">
+                                        <tr>
+                                            <td><t t-esc="payment.payment_date"/></td>
+                                            <td><t t-esc="payment.amount"/></td>
+                                            <td><t t-esc="payment.payment_type"/></td>
+                                            <td>Paid</td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

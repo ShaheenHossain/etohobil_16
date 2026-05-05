@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_module_cleanup_wizard" model="ir.ui.view">
+        <field name="name">module.cleanup.wizard.form</field>
+        <field name="model">module.cleanup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Clean Up Payment Products">
+                <div class="alert alert-warning" role="alert">
+                    <strong>Warning!</strong> This will permanently delete all payment products
+                    created by this module. This action cannot be undone.
+                </div>
+                <group>
+                    <field name="confirm"/>
+                    <label for="confirm" string="I understand this will delete all payment products"/>
+                </group>
+                <footer>
+                    <button name="action_cleanup_and_uninstall"
+                            string="Clean Up and Uninstall"
+                            type="object"
+                            class="btn-danger"
+                            confirm="This will delete all payment products and uninstall the module. Continue?"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cleanup_and_uninstall" model="ir.actions.act_window">
+        <field name="name">Clean Up Payment Products</field>
+        <field name="res_model">module.cleanup.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="base.model_ir_module_module"/>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+</odoo>

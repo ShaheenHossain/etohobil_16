@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="1">
+        <!-- Income Accounts -->
+        <record id="account_member_deposit_income" model="account.account">
+            <field name="name">Member Deposit Income</field>
+            <field name="code">410001</field>
+            <field name="user_type_id" ref="account.data_account_type_revenue"/>
+            <field name="reconcile">False</field>
+        </record>
+
+        <record id="account_member_subscription_fee" model="account.account">
+            <field name="name">Member Subscription Fee</field>
+            <field name="code">410002</field>
+            <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        </record>
+
+        <record id="account_bank_interest_income" model="account.account">
+            <field name="name">Bank Interest Income</field>
+            <field name="code">410003</field>
+            <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        </record>
+
+        <record id="account_member_transfer_income" model="account.account">
+            <field name="name">Member Transfer Amount</field>
+            <field name="code">410004</field>
+            <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        </record>
+
+        <!-- Asset Accounts -->
+        <record id="account_land_asset" model="account.account">
+            <field name="name">Land Asset</field>
+            <field name="code">120001</field>
+            <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        </record>
+
+        <record id="account_member_due_receivable" model="account.account">
+            <field name="name">Member Due Receivable</field>
+            <field name="code">110002</field>
+            <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        </record>
+
+        <!-- Liability Accounts -->
+        <record id="account_member_advance_liability" model="account.account">
+            <field name="name">Member Advance Payment</field>
+            <field name="code">210001</field>
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        </record>
+
+        <!-- Expense Accounts -->
+        <record id="account_organization_expense" model="account.account">
+            <field name="name">Organization Expenses</field>
+            <field name="code">510001</field>
+            <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        </record>
+    </data>
+</odoo>
